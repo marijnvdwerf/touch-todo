@@ -27,6 +27,22 @@ Ext.application({
         'Ext.MessageBox'
     ],
 
+    controllers: [
+        'Todos'
+    ],
+
+    models: [
+        'Todo'
+    ],
+
+    stores: [
+        'Todos'
+    ],
+
+    views: [
+        'Main'
+    ],
+
     icon: {
         '57': 'resources/icons/Icon.png',
         '72': 'resources/icons/Icon~ipad.png',
@@ -48,6 +64,9 @@ Ext.application({
     launch: function() {
         // Destroy the #appLoadingIndicator element
         Ext.fly('appLoadingIndicator').destroy();
+
+        // Initialize the main view
+        Ext.Viewport.add(Ext.create('TouchTodo.view.Main'));
     },
 
     onUpdated: function() {
