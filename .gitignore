@@ -1,2 +1,10 @@
 # PhpStorm
 .idea/
+
+# Sencha
+.sencha/
+.sencha_backup/
+.sass-cache/
+
+build/
+archive/
