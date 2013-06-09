@@ -8,7 +8,8 @@ Ext.define('TouchTodo.view.Main', {
         'Ext.TitleBar',
         'Ext.SegmentedButton',
         'Ext.dataview.List',
-        'Ext.field.Text'
+        'Ext.field.Text',
+        'TouchTodo.view.Todo'
     ],
 
     config: {
@@ -60,14 +61,8 @@ Ext.define('TouchTodo.view.Main', {
                 id: 'todoList',
                 disableSelection: true,
 
-                /**
-                 * Array will be converted to string, but allows for pretty indented code :3
-                 */
-                itemTpl: [
-                    '<div>',
-                    '   <span class="todo<tpl if="checked"> completed</tpl>">{label}</span>',
-                    '</div>'
-                ]
+                useSimpleItems: false,
+                defaultType: 'todoItem'
             },
             {
                 xtype: 'toolbar',
