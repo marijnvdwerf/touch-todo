@@ -13,6 +13,7 @@ Ext.define('TouchTodo.controller.Todos', {
         refs: {
             titleBar: '#todoTitleBar',
             list: '#todoList',
+            deleteItemButton: '#todoList button',
             input: '#todoInput',
             filter: '#todoSegmentedButton',
             clear: '#clearCompletedButton'
@@ -24,6 +25,9 @@ Ext.define('TouchTodo.controller.Todos', {
             },
             list: {
                 itemtap: 'tapItem'
+            },
+            deleteItemButton: {
+                tap: 'deleteItem'
             },
             filter: {
                 toggle: 'changeFilter'
@@ -125,6 +129,28 @@ Ext.define('TouchTodo.controller.Todos', {
          * @type {TouchTodo.store.Todos}
          */
         var todoStore = Ext.getStore('TodoStore');
+        todoStore.sync();
+    },
+
+
+    /**
+     * Fires whenever an item's delete button is tapped.
+     * 
+     * @see http://docs.sencha.com/touch/2.2.0/#!/api/Ext.Button-event-tap
+     * 
+     * @param {Ext.Button} button
+     * @param {Ext.event.Event} e
+     * @param {object} eOpts
+     */
+    deleteItem: function(button, e, eOpts){
+        e.stopPropagation();
+        var todo = button.getParent().getRecord();
+        /**
+         * @type {TouchTodo.store.Todos}
+         */
+        var todoStore = Ext.getStore('TodoStore');
+
+        todoStore.remove(todo);
         todoStore.sync();
     },
 

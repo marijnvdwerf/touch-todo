@@ -24,6 +24,10 @@ Ext.define('TouchTodo.view.Todo', {
             }
         },
 
+        deleteButton:{
+            text:"&times;"
+        },
+
         layout:{
             type:'hbox'
         }
@@ -47,6 +51,19 @@ Ext.define('TouchTodo.view.Todo', {
     },
 
     updateLabelField:function (newLabelField, oldLabelField) {
+        if (oldLabelField) {
+            this.remove(oldLabelField);
+        }
+        if (newLabelField) {
+            this.add(newLabelField);
+        }
+    },
+
+    applyDeleteButton:function (config) {
+        return Ext.factory(config, Ext.Button, this.getDeleteButton());
+    },
+
+    updateDeleteButton:function (newLabelField, oldLabelField) {
         if (oldLabelField) {
             this.remove(oldLabelField);
         }
