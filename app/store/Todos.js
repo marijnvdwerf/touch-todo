@@ -13,6 +13,9 @@ Ext.define('TouchTodo.store.Todos', {
         sorters: [
             {
                 property: 'id',
+                transform: function(value) {
+                    return parseInt(value, 10);
+                },
                 direction: 'ASC'
             }
         ],
