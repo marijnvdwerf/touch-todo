@@ -11,6 +11,7 @@ Ext.define('TouchTodo.controller.Todos', {
         ],
 
         refs: {
+            titleBar: '#todoTitleBar',
             list: '#todoList',
             input: '#todoInput',
             filter: '#todoSegmentedButton',
@@ -30,6 +31,50 @@ Ext.define('TouchTodo.controller.Todos', {
             clear: {
                 tap: 'clearCompleted'
             }
+        }
+    },
+
+
+    launch: function(app) {
+        /**
+         * @type {TouchTodo.store.Todos}
+         */
+        var todoStore = Ext.getStore('TodoStore');
+        todoStore.on('write', this.writeStore, this);
+
+        // Call function so the title gets properly set on launch
+        this.writeStore(todoStore);
+    },
+
+    /**
+     * Fires whenever a successful write has been made via the configured Proxy
+     *
+     * @see http://docs.sencha.com/touch/2.2.0/#!/api/Ext.data.Store-event-write
+     *
+     * @param {Ext.data.Store} store
+     * @param {Ext.data.Operation} operation
+     * @param {Object} eOpts
+     */
+    writeStore: function(store, operation, eOpts){
+        /**
+         * @type {Ext.TitleBar}
+         */
+        var titleBar = this.getTitleBar();
+
+        var results = store.queryBy(
+            /**
+             * @param {TouchTodo.model.Todo} record
+             * @param {Object} id
+             */
+            function(record, id) {
+                return !record.get('checked');
+            }
+        );
+
+        if(results.length === 0) {
+            titleBar.setTitle("Nothing Todo");
+        } else {
+            titleBar.setTitle("Todo (" + results.length + ")");
         }
     },
 
