@@ -6,5 +6,34 @@
 
 // Custom code goes here..
 
+$list-bg-color: #ffffff;
+$list-font: '"Helvetica Neue", HelveticaNeue, "Helvetica-Neue", Helvetica, "BBAlpha Sans", sans-serif';
+
+$checkbox-on-color: #ff0000;
+
 // Examples of using the icon mixin:
 // @include icon('user');
+
+.list {
+  background: $list-bg-color;
+}
+
+.todo {
+  font-family: $list-font;
+}
+
+.x-field-checkbox {
+  background: transparent;
+}
+
+.x-field-checkbox .x-field-mask::after, .x-field-radio .x-field-mask::after{
+  color: rgba($checkbox-on-color, 0.1);
+}
+
+.x-input-el:checked+.x-field-mask::after {
+  color: $checkbox-on-color;
+}
+
+.x-layout-box-item {
+  line-height: 46px;
+}

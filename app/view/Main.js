@@ -53,6 +53,7 @@ Ext.define('TouchTodo.view.Main', {
             },
             {
                 xtype: 'list',
+                cls: 'list',
 
                 /**
                  * `id` of store that contains the data for this list
