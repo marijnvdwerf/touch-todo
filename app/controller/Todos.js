@@ -104,10 +104,8 @@ Ext.define('TouchTodo.controller.Todos', {
         var todoStore = Ext.getStore('TodoStore');
         var filterId = button.getId();
 
+        todoStore.clearFilter();
         switch (filterId) {
-            case 'filter-all':
-                todoStore.clearFilter();
-                break;
             case 'filter-active':
                 todoStore.filter('checked', false);
                 break;
